@@ -177,13 +177,14 @@ nav ul a:hover {
 }
 
 #gallery figcaption{
-	font-family: "Syne";
+	margin-top: 5px;
 }
 
 #gallery img {
 	width: 100%;
 
 }
+
 #contact {
 	width: 50%;
 	margin: auto;
@@ -222,7 +223,7 @@ nav ul a:hover {
 #login h2{
 	margin-bottom: 20px;
 }
-#login form {
+#btnLogin {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
@@ -236,6 +237,9 @@ nav ul a:hover {
 }
 #login label {
 	margin: 2em 0 1em 0;
+}
+#messageErreur {
+	color: red;
 }
 
 .mdp {
