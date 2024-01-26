@@ -9,6 +9,7 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="connexion" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script src="../Backend/scriptsLogin.js" defer></script>
 </head>
 <body>
     <header>
@@ -25,11 +26,12 @@
 <main>
     <section id="login">
 		<h2>Log in</h2>
-		<form action="#" method="post">
+		<form id ="btnLogin" action="#" method="post">
 			<label for="email">E-mail</label>
-			<input type="e-mail" name="e-mail" id="e-mail">
+			<input type="email" name="email" id="email" placeholder="Entrez votre e-mail" required>
 			<label for="password">Mot de passe</label>
-			<input type="password" name="password" id="password">
+			<input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
+			<span id="messageErreur"></span>
 			<input type="submit" value="Se connecter">
             <div class="mdp"><p>Mot de passe oublié</p></div>
 		</form>
