@@ -1,6 +1,7 @@
 const url = "http://localhost:5678/api/";
 const galleryContainer = document.getElementById("gallery");
 const filtersContainer = document.getElementById("filters");
+window.localStorage.getItem("token");
 
 async function getFilters () {
     const reponse = await fetch(url + "categories");
@@ -41,3 +42,32 @@ async function getArticles (categorieNum) {
     }
 };
 getArticles(0);
+
+const token = window.localStorage.getItem("token");
+if (token !== null) {
+    const blackBar = document.getElementById("blackBar");
+    let img = document.createElement("img");
+    img.setAttribute("id", "iconeEdition");
+    img.setAttribute("src", "./assets/icons/editer.png");
+    img.setAttribute("alt", "Editer");
+    let span = document.createElement("span");
+    span.setAttribute("id", "btnEdition");
+    span.innerHTML = "Mode édition";
+    blackBar.appendChild(img);
+    blackBar.appendChild(span);
+    blackBar.style.display = "flex";
+
+    const logOut = document.getElementById("log");
+    logOut.innerHTML = "Logout";
+
+    const projets = document.getElementById("projets");
+    let imgProjets = document.createElement("img");
+    imgProjets.setAttribute("id", "iconeModification");
+    imgProjets.setAttribute("src", "./assets/icons/modifications.png");
+    imgProjets.setAttribute("alt", "Modifier");
+    let button = document.createElement("button");
+    button.setAttribute("id", "btnModification");
+    button.innerHTML = "Modifier";
+    projets.appendChild(imgProjets);
+    projets.appendChild(button);
+};
