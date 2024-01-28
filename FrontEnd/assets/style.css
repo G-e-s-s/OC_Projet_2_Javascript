@@ -47,17 +47,34 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+#iconeEdition {
+    margin-right: 10px;
+}
+#btnEdition {
+	background-color: black;
+	color: white;
+	text-decoration: none;
+}
+#blackBar {
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: black;
+	height: 60px;
+	display: none;
+}
 body {
 	max-width: 1140px;
-	margin:auto;
+	margin: auto;
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background-color: #FFFEF8;
 }
 header {
 	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 20px 0 50px 0;
 }
 
 section {
@@ -142,6 +159,24 @@ nav ul a:hover {
 #portfolio h2 {
 	text-align: center;
 	margin-bottom: 1em;
+}
+#projets {
+	display: flex;
+	align-items: baseline;
+	flex-direction: row;
+}
+#btnModification{
+	color: black;
+}
+#iconeModification {
+	margin-left: 20px;
+}
+#projets button {
+	background: none;
+    border: none;
+	outline: none;
+    box-shadow: none;
+	text-decoration: none;
 }
 
 #filters {
