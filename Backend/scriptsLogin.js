@@ -20,22 +20,10 @@ form.addEventListener("submit", async (event) => {
     else{
         if (reponse.status === 401) {
             let erreur = document.getElementById("messageErreur");
-            erreur.innerHTML = "Utilisateur non autorisé";
+            erreur.innerHTML = "E-mail ou mot de passe introuvable";
         } else{
             let erreur = document.getElementById("messageErreur");
-            erreur.innerHTML = "Utilisateur non trouvé";
+            erreur.innerHTML = "E-mail ou mot de passe introuvable";
         }
     };
-});
-
-        /*if(response == login) {
-            setData(container) ;
-        } else {
-            setError({
-                title: "E-mail ou mot de passe introuvable",
-                message: container.error,
-            }),
-        };
-    });
-};
-getLogin();*/
+})
