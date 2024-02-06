@@ -3,6 +3,7 @@ const galleryContainer = document.getElementById("gallery");
 const filtersContainer = document.getElementById("filters");
 window.localStorage.getItem("token");
 
+//Filtres//
 async function getFilters () {
     const reponse = await fetch(url + "categories");
     const categories = await reponse.json();
@@ -23,6 +24,7 @@ async function getFilters () {
 };
 getFilters();
 
+//Images projets//
 async function getArticles (categorieNum) {
     const reponse = await fetch(url + "works");
     const works = await reponse.json();
@@ -43,8 +45,10 @@ async function getArticles (categorieNum) {
 };
 getArticles(0);
 
+//Page d'acceuil SI connecté//
 const token = window.localStorage.getItem("token");
 if (token !== null) {
+    //Black Bar//
     const blackBar = document.getElementById("blackBar");
     let img = document.createElement("img");
     img.setAttribute("id", "iconeEdition");
@@ -57,9 +61,18 @@ if (token !== null) {
     blackBar.appendChild(span);
     blackBar.style.display = "flex";
 
+    //Log In -> Log Out//
     const logOut = document.getElementById("log");
     logOut.innerHTML = "Logout";
+    logOut.setAttribute("href", "");
+    logOut.addEventListener("click", (event) => {
+        event.preventDefault();
+        localStorage.removeItem("token");
+        location.reload();
+    });
 
+
+    //Bouton modifier//
     const projets = document.getElementById("projets");
     let imgProjets = document.createElement("img");
     imgProjets.setAttribute("id", "iconeModification");
@@ -70,4 +83,8 @@ if (token !== null) {
     button.innerHTML = "Modifier";
     projets.appendChild(imgProjets);
     projets.appendChild(button);
+
+    //Cacher les filtres//
+    const filters = document.getElementById("filters");
+    filters.style.display='none';
 };
