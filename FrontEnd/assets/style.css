@@ -307,12 +307,28 @@ hr {
 	margin-top: 20px;
 	font-size: 70px;
 }
-#btnAddImage {
+#classImage {
+	display: flex;
+	border-style: none;	
+	background-color: transparent;
+	align-items: center;
+	margin: 10px auto;
+}
+#btnFile {
+	position: relative;
 	background-color :rgba(203, 214, 220, 1);
 	border-style: none;	
 	color: rgba(48, 102, 133, 1);
-	margin: 10px auto;
-	padding: 10px 0; 
+	padding: 11px 33px; 
+	z-index: 0;
+	border-radius: 50px;
+	font-size: 14px;
+}
+#btnAddImage {
+	position: absolute;
+	z-index: 1;
+	opacity: 0;
+	width: 173px;
 }
 #textInfo {
 	font-size: 10px;
