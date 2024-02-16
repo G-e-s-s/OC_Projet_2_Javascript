@@ -76,7 +76,10 @@
 					<div id="ajoutPhoto">
 						<div id="element">
 							<i id="iconeImage" class="fa-regular fa-image"></i>
-							<input id="btnAddImage" type="submit" value="+ Ajouter photo">
+							<button id="classImage">
+								<label for ="btnAddImage" id="btnFile">+ Ajouter photo</label>
+								<input id="btnAddImage" type="file" accept = ".jpg,.png"/>
+							</button>
 							<p id="textInfo">jpg, png : 4mo max</p>
 						</div>
 						<label for="title" id="label">Title</label>
@@ -90,6 +93,7 @@
 							</p>
 						</form>
 					</div>
+					<span id="messageErreur"></span>
 					<hr />
 					<input id="validerImage" type="submit" value="Valider">
 				</div>
