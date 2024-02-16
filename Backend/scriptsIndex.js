@@ -89,6 +89,7 @@ if (token !== null) {
     filters.style.display='none';
 };
 
+//Modale Modifier image//
 async function clickBtnModifier() {
     const modifierPhoto = document.getElementById("btnModification");
 
@@ -116,7 +117,6 @@ async function modaleSuppImg() {
         document.getElementById("modal-list").remove();
     });
 
-
     const h1Galery = document.createElement("h1");
     h1Galery.setAttribute("class", "titlePopUp");
     h1Galery.innerHTML = "Galerie photo";
@@ -135,14 +135,19 @@ async function modaleSuppImg() {
         let img = document.createElement("img");
         img.setAttribute("src", works[i].imageUrl);
         img.setAttribute("alt",  works[i].title);
-        iconeGalery.addEventListener("click", async (event) => {
-            event.preventDefault();
-            const reponse = await fetch("http://localhost:5678/api/works/"+event.target.getAttribute("data-id"),
-                {method : "DELETE"}
-            );
-            document.getElementById("modal-list").remove();
-            modaleSuppImg();
-            console.log(reponse);
+        iconeGalery.addEventListener("click", (event) => {
+        //event.preventDefault();
+            fetch("http://localhost:5678/api/works/"+event.target.getAttribute("data-id"),
+                {
+                    method : "DELETE",
+                    headers : {
+                        "Authorization" : "Bearer " + window.localStorage.getItem("token"),
+                    }
+                }
+            ).then( (response) => {
+                console.log(response);
+            });
+            //document.getElementById("modal-list").remove();
         });
         imagesProjet.appendChild(imgGalery);
         imgGalery.appendChild(iconeGalery);
@@ -172,11 +177,12 @@ async function modaleSuppImg() {
     clickBtnAjouter();
 };
 
+//Modale Ajouter image//
 async function clickBtnAjouter() {
     const ajouterPhoto = document.getElementById("addImage");
 
     //Création de la modale2 dynamique//
-    ajouterPhoto.addEventListener("click", () => {
+    ajouterPhoto.addEventListener("click", async () => {
         document.getElementById("modal-list").remove();
 
         const modale = document.getElementById("modale");
@@ -220,14 +226,21 @@ async function clickBtnAjouter() {
             const iconeImage = document.createElement("i");
                 iconeImage.setAttribute("id", "iconeImage");
                 iconeImage.setAttribute("class", "fa-regular fa-image");
-            const btnAddImage = document.createElement("input");
+            const classImage = document.createElement("div");
+                classImage.setAttribute("id", "classImage"); 
+                const btnFile = document.createElement("label");
+                btnFile.setAttribute("for", "btnAddImage");
+                btnFile.setAttribute("id", "btnFile");
+                btnFile.innerHTML = "+ Ajouter photo";
+                const btnAddImage = document.createElement("input");
                 btnAddImage.setAttribute("id", "btnAddImage");
-                btnAddImage.setAttribute("type", "submit");
-                btnAddImage.setAttribute("value", "+ Ajouter photo");
+                btnAddImage.setAttribute("type", "file");
+                btnAddImage.setAttribute("name","image")
+                btnAddImage.setAttribute("accept", ".jpg,.png");
             const textInfo = document.createElement("p");
                 textInfo.setAttribute("id", "textInfo");
                 textInfo.innerHTML = "jpg, png : 4mo max";
-        
+           
         const label = document.createElement("label");
         label.setAttribute("for", "title");
         label.setAttribute("id", "label");
@@ -242,24 +255,63 @@ async function clickBtnAjouter() {
         form.setAttribute("method", "get");
         form.setAttribute("action", "");
             const pCategory = document.createElement("p");
-                    const categorie = document.createElement("label");
-                    categorie.setAttribute("id", "categorie");
-                    categorie.setAttribute("for", "title");
-                    categorie.innerHTML = "Catégorie";
-                    
-                    const nameCategorie = document.createElement("select");
-                    nameCategorie.setAttribute("id", "nameCategorie");
-                    nameCategorie.setAttribute("name", "categorie");
-                    const option = document.createElement("option");
-                    option.setAttribute("value", "");
+                const categorie = document.createElement("label");
+                categorie.setAttribute("id", "categorie");
+                categorie.setAttribute("for", "title");
+                categorie.innerHTML = "Catégorie";
 
+                const categoriesJSON = await fetch(url + "categories"); 
+                const categories = await categoriesJSON.json();
+                const nameCategorie = document.createElement("select");
+                nameCategorie.setAttribute("id", "nameCategorie");
+                nameCategorie.setAttribute("name", "categorie");
+                let option = document.createElement("option");
+                option.setAttribute("value","");
+                nameCategorie.appendChild(option);
+                for(i in categories) {
+                    let option = document.createElement("option");
+                    option.setAttribute("value",categories[i].id);
+                    option.innerHTML = categories[i].name;
+                    nameCategorie.appendChild(option);
+                }
+            
+        const messageErreur = document.createElement("span");
+        messageErreur.setAttribute("id", "messageErreur")
+        
         const hr = document.createElement("hr");
 
         const validerImage = document.createElement("input");
         validerImage.setAttribute("id", "validerImage");
         validerImage.setAttribute("type", "submit");
         validerImage.setAttribute("value", "Valider");
+        validerImage.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const data = new FormData();
+               const image = document.getElementById("btnAddImage");
+               const title= document.getElementById("namePhoto");
+               const category= document.getElementById("nameCategorie");
+               data.append("image", image.files[0]);
+               data.append("title", title.value);
+               data.append("category", category.value);
 
+            const reponse = await fetch("http://localhost:5678/api/works", {
+                method: "POST",
+                accept: "application/json",
+                headers: 
+                    { 
+                        "Authorization" : "Bearer " + window.localStorage.getItem("token")
+                    },
+                body: data,
+            });
+            if (reponse.ok){
+                window.location = "index.html";
+            }
+            else{
+                let erreur = document.getElementById("messageErreur");
+                erreur.innerHTML = "Le formulaire n’est pas correctement rempli";
+            }
+        });
+            
         modale.appendChild(aside);
         aside.appendChild(popupAdd);
 
@@ -274,7 +326,9 @@ async function clickBtnAjouter() {
 
         ajoutPhoto.appendChild(element);
         element.appendChild(iconeImage);
-        element.appendChild(btnAddImage);
+        element.appendChild(classImage);
+        classImage.appendChild(btnFile);
+        classImage.appendChild(btnAddImage);
         element.appendChild(textInfo);
 
         ajoutPhoto.appendChild(label);
@@ -284,7 +338,6 @@ async function clickBtnAjouter() {
         form.appendChild(pCategory);
         pCategory.appendChild(categorie);
         pCategory.appendChild(nameCategorie);
-        nameCategorie.appendChild(option);
 
         popupAdd.appendChild(hr);
         popupAdd.appendChild(validerImage);
