@@ -234,7 +234,7 @@ nav ul a:hover {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 	width: 70%;
-	margin: 46px 0 67px 0;
+	margin: 46px 0 60px 0;
 }
 #images img {
 	width: 78px;
@@ -244,8 +244,8 @@ nav ul a:hover {
 .scroller {
 	overflow-y: scroll;
 	scrollbar-color: #B3B3B3 #B3B3B3;
-	scrollbar-width: thin;
-	scrollbar-width: auto;
+	scrollbar-width: none;
+	max-height: 50%;
 }
 hr {
   width: 420px;
@@ -300,10 +300,16 @@ hr {
     border-radius: 3px;
 	display: flex;
 	flex-direction: column;
+	align-items: center;
+	height: 169px;
+}
+#element img {
+	position: absolute;
+	height: 169px;
+	z-index: 0;
 }
 #iconeImage {
 	color: rgba(185, 197, 204, 1);
-	align-self: center;
 	margin-top: 20px;
 	font-size: 70px;
 }
@@ -315,7 +321,7 @@ hr {
 	margin: 10px auto;
 }
 #btnFile {
-	position: relative;
+	position: absolute;
 	background-color :rgba(203, 214, 220, 1);
 	border-style: none;	
 	color: rgba(48, 102, 133, 1);
@@ -325,7 +331,7 @@ hr {
 	font-size: 14px;
 }
 #btnAddImage {
-	position: absolute;
+	position: relative;
 	z-index: 1;
 	opacity: 0;
 	width: 173px;
@@ -334,7 +340,7 @@ hr {
 	font-size: 10px;
 	text-align: center;
 	color: rgba(68, 68, 68, 1);
-	margin-bottom: 20px;
+	margin: 10px;
 }
 #label {
 	margin: 20px 0 10px 0;
