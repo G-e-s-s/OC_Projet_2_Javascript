@@ -11,7 +11,7 @@ form.addEventListener("submit", async (event) => {
         method: "POST",
         headers: { "Content-Type": "application/json" }, // Precise le type d'information de ce qui est envoyé
         body: loginContainer, // Information envoyée
-    }); // Envoi des identifiant aux back-end
+    }); // Envoi des identifiants aux back-end
     if (reponse.ok){
         const value = await reponse.json();
         window.localStorage.setItem("token", value["token"]); // On stock le token en local
