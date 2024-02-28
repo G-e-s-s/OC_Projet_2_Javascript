@@ -12,11 +12,9 @@
 	<link rel="stylesheet" href="./assets/style.css">
 	<script src="scriptsIndex.js" defer></script>
 </head>
+
 <body>	
-	<div id="blackBar">
-		<!--<img id="iconeEdition" src="./assets/icons/editer.png" alt="Editer">
-		<span id="btnEdition">Mode édition</span>-->
-	</div>
+	<div id="blackBar"></div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -28,6 +26,7 @@
 		</ul>
 	</nav>
 </header>
+
 <main>
 	<section id="introduction">
 		<figure>
@@ -40,121 +39,16 @@
 			<p>En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice).</p>
 		</article>
 	</section>
+
 	<section id="portfolio">
 		<div id="projets">
 			<h2>Mes Projets</h2>
-			<!--<img id="iconeModification" src="./assets/icons/modifications.png" alt="Modifier">
-			<button href="#modal" id="btnModification">Modifier</button>-->
 		</div>
-		<div id="modale">
-			<!--<aside id="modal" aria-hidden="true" role="dialog" aria-labelledby="titleModal">
-				<div id="popupList">				
-					<button id="close"><i class="fa-solid fa-xmark"></i></button>
-					<h1 class="titlePopUp">Galerie photo</h1>
-					<div id="images" class="scroller">
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/abajour-tahina.png" alt="Abat-jour Tahina"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port-Louis"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X"></div>			
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris"></div>
-						<div class="imgGalery"><i class="fa-solid fa-trash-can iconeGalery"></i><img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi"></div>
-					</div>
-					<hr />
-					<input id="addImage" type="submit" value="Ajouter une photo">
-				</div>
-				<div id="popupAdd">
-					<div id="return">
-						<button id="returnModal"><i class="fa-solid fa-arrow-left"></i></button>
-						<button id="closeModal"><i class="fa-solid fa-xmark"></i></button>
-					</div>
-					<h1 class="titlePopUp">Ajout photo</h1>
-					<div id="ajoutPhoto">
-						<div id="element">
-							<div id="imageEnCours"><img src= ""><i id="iconeImage" class="fa-regular fa-image"></i></div>
-							<button id="classImage">
-								<label for ="btnAddImage" id="btnFile">+ Ajouter photo</label>
-								<input id="btnAddImage" type="file" accept = ".jpg,.png"/>
-							</button>
-							<p id="textInfo">jpg, png : 4mo max</p>
-						</div>
-						<label for="title" id="label">Title</label>
-						<input type="text" id="namePhoto" name="title" required>  
-						<form method="get" action="">
-							<p>
-								<label id="categorie" for="title">Catégorie</label><br>
-								<select name="categorie" id="nameCategorie">
-									<option value=""></option>
-								</select>
-							</p>
-						</form>
-					</div>
-					<span id="messageErreur"></span>
-					<hr />
-					<input id="validerImage" type="submit" value="Valider">
-				</div>
-			</aside>-->
-		</div>
-
-		<div id="filters">
-			<!--<button id="all">Tous</button> 
-			<button id="object">Objets</button> 
-			<button id="apartment">Appartements</button> 
-			<button id="hotel">Hôtels & restaurants</button> -->
-		</div>
-		
-		<div id="gallery">
-			<!--
-			<figure>
-				<img src="assets/images/abajour-tahina.png" alt="Abat-jour Tahina">
-				<figcaption>Abat-jour Tahina</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-				<figcaption>Appartement Paris V</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-				<figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port-Louis">
-				<figcaption>Villa “La Balisiere” - Port-Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>-->
-		</div>
+		<div id="modale"></div>
+		<div id="filters"></div>
+		<div id="gallery"></div>
 	</section>
+
 	<section id="contact">
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
