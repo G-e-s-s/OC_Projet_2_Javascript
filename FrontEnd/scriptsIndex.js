@@ -128,9 +128,9 @@ async function modaleSuppImg() {
     buttonClose.setAttribute("id", "close");
     const iconeClose = document.createElement("i");
     iconeClose.setAttribute("class", "fa-solid fa-xmark");
-    buttonClose.addEventListener("click", async () => {
-        document.getElementById("modal-list").remove(); //Retire l'élément du DOM
-    });
+        buttonClose.addEventListener("click", async () => {
+            document.getElementById("modal-list").remove(); //Retire l'élément du DOM
+        });
 
     //Afficher les images//
     const h1Galery = document.createElement("h1");
@@ -144,9 +144,9 @@ async function modaleSuppImg() {
     const imagesProjet = document.createElement("div");
     imagesProjet.setAttribute("id", "images");
     imagesProjet.setAttribute("class", "scroller");
-    const reponse = await fetch(url + "works");
-    const works = await reponse.json();
-    for(i in works) {
+        const reponse = await fetch(url + "works"); //Recuperation des images disponibles dans le back-end
+        const works = await reponse.json();
+    for(i in works) { 
         let imgGalery = document.createElement("div");
         imgGalery.setAttribute("class", "imgGalery");
         let iconeGalery = document.createElement("i");
@@ -155,25 +155,25 @@ async function modaleSuppImg() {
         let img = document.createElement("img");
         img.setAttribute("src", works[i].imageUrl);
         img.setAttribute("alt",  works[i].title);
-        iconeGalery.addEventListener("click", async (event) => {
-            event.preventDefault();
-            await fetch("http://localhost:5678/api/works/"+event.target.getAttribute("data-id"),
-                {
-                    method : "DELETE",
-                    headers : {
-                        "Authorization" : "Bearer " + window.localStorage.getItem("token"),
+            iconeGalery.addEventListener("click", async (event) => { //Suppression image
+                event.preventDefault();
+                await fetch("http://localhost:5678/api/works/"+event.target.getAttribute("data-id"),
+                    {
+                        method : "DELETE",
+                        headers : {
+                            "Authorization" : "Bearer " + window.localStorage.getItem("token"),
+                        }
                     }
-                }
-            ).then((response) => { 
-                if (response.ok) {
-                    document.getElementById("gallery").innerHTML = "";
-                    getArticles(0);
-                    document.getElementById("modal-list").remove();
-                    modaleSuppImg();
-                }
+                ).then((response) => { 
+                    if (response.ok) {
+                        document.getElementById("gallery").innerHTML = "";
+                        getArticles(0);
+                        document.getElementById("modal-list").remove();
+                        modaleSuppImg();
+                    }
+                });
+                
             });
-            
-        });
         imagesProjet.appendChild(imgGalery);
         imgGalery.appendChild(iconeGalery);
         imgGalery.appendChild(img);
@@ -236,15 +236,15 @@ async function modalAddImage(){
             returnModal.setAttribute("id", "returnModal");
             const iconeReturn = document.createElement("i");
             iconeReturn.setAttribute("class", "fa-solid fa-arrow-left");
-            returnModal.addEventListener("click", async () => {
-                document.getElementById("modal-add").remove();
-                document.getElementById("btnModification").click();
-            });
+                returnModal.addEventListener("click", async () => {
+                    document.getElementById("modal-add").remove(); //Retire l'élément du DOM
+                    document.getElementById("btnModification").click(); //Affiche la 1ère madale
+                });
         const closeModal = document.createElement("button");
             closeModal.setAttribute("id", "closeModal");
-            closeModal.addEventListener("click", async () => {
-                document.getElementById("modal-add").remove();
-            });
+                closeModal.addEventListener("click", async () => {
+                    document.getElementById("modal-add").remove(); //Retire l'élément du DOM
+                });
             const iconeClose = document.createElement("i");
             iconeClose.setAttribute("class", "fa-solid fa-xmark");
 
@@ -289,21 +289,21 @@ async function modalAddImage(){
         const textInfo = document.createElement("p");
             textInfo.setAttribute("id", "textInfo");
             textInfo.innerHTML = "jpg, png : 4mo max";
-        btnAddImage.onchange = ("inputs", async() => {
-            const [file] = btnAddImage.files
-            if (file) {
-                const newImage = document.createElement("img");
-                newImage.src = URL.createObjectURL(file);
-                newImage.setAttribute("src", URL.createObjectURL(file));
-                document.getElementById("iconeImage").remove();
-                document.getElementById("btnFile").remove();
-                document.getElementById("textInfo").remove();
-                const element = document.getElementById("element");
-                element.appendChild(newImage);
-                const btnAddImage = document.getElementById("btnAddImage");
-                btnAddImage.style.fontSize = "120px";
-            }
-        });
+                btnAddImage.onchange = ("inputs", async() => { //Affiche l'image téléchargé
+                    const [file] = btnAddImage.files
+                    if (file) {
+                        const newImage = document.createElement("img");
+                        newImage.src = URL.createObjectURL(file);
+                        newImage.setAttribute("src", URL.createObjectURL(file));
+                        document.getElementById("iconeImage").remove(); //Retire l'élément du DOM
+                        document.getElementById("btnFile").remove(); //
+                        document.getElementById("textInfo").remove(); //
+                        const element = document.getElementById("element");
+                        element.appendChild(newImage);
+                        const btnAddImage = document.getElementById("btnAddImage");
+                        btnAddImage.style.fontSize = "120px"; // Propriété CSS dimension image
+                    }
+                });
 
     //Ajouter le titre de l'image//
         /*<label for="title" id="label">Title</label>
@@ -338,8 +338,8 @@ async function modalAddImage(){
             categorie.setAttribute("for", "title");
             categorie.innerHTML = "Catégorie";
 
-            const categoriesJSON = await fetch(url + "categories"); 
-            const categories = await categoriesJSON.json();
+                const categoriesJSON = await fetch(url + "categories"); 
+                const categories = await categoriesJSON.json();
             const nameCategorie = document.createElement("select");
             nameCategorie.setAttribute("id", "nameCategorie");
             nameCategorie.setAttribute("name", "categorie");
@@ -348,12 +348,12 @@ async function modalAddImage(){
             let option = document.createElement("option");
             option.setAttribute("value","");
             nameCategorie.appendChild(option);
-            for(i in categories) {
-                let option = document.createElement("option");
-                option.setAttribute("value",categories[i].id);
-                option.innerHTML = categories[i].name;
-                nameCategorie.appendChild(option);
-            }
+                for(i in categories) {
+                    let option = document.createElement("option");
+                    option.setAttribute("value",categories[i].id);
+                    option.innerHTML = categories[i].name;
+                    nameCategorie.appendChild(option);
+                }
     //Message erreur si formulaire mal rempli//
     const messageErreur = document.createElement("span");
     messageErreur.setAttribute("id", "messageErreur")
@@ -367,36 +367,36 @@ async function modalAddImage(){
     validerImage.setAttribute("id", "validerImage");
     validerImage.setAttribute("type", "submit");
     validerImage.setAttribute("value", "Valider");
-    validerImage.addEventListener("click", async (event) => {
-        event.preventDefault();
-        const data = new FormData();
-           const image = document.getElementById("btnAddImage");
-           const title= document.getElementById("namePhoto");
-           const category= document.getElementById("nameCategorie");
-           data.append("image", image.files[0]);
-           data.append("title", title.value);
-           data.append("category", category.value);
+        validerImage.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const data = new FormData();
+            const image = document.getElementById("btnAddImage");
+            const title= document.getElementById("namePhoto");
+            const category= document.getElementById("nameCategorie");
+            data.append("image", image.files[0]);
+            data.append("title", title.value);
+            data.append("category", category.value);
 
-        const reponse = await fetch("http://localhost:5678/api/works", {
-            method: "POST",
-            accept: "application/json",
-            headers: 
-                { 
-                    "Authorization" : "Bearer " + window.localStorage.getItem("token")
-                },
-            body: data,
+            const reponse = await fetch("http://localhost:5678/api/works", {
+                method: "POST",
+                accept: "application/json",
+                headers: 
+                    { 
+                        "Authorization" : "Bearer " + window.localStorage.getItem("token")
+                    },
+                body: data,
+            });
+            if (reponse.ok){
+                document.getElementById("gallery").innerHTML = "";
+                getArticles(0);
+                document.getElementById("modal-add").remove();
+                modalAddImage();
+            }
+            else{
+                let erreur = document.getElementById("messageErreur");
+                erreur.innerHTML = "Le formulaire n’est pas correctement rempli";
+            }
         });
-        if (reponse.ok){
-            document.getElementById("gallery").innerHTML = "";
-            getArticles(0);
-            document.getElementById("modal-add").remove();
-            modalAddImage();
-        }
-        else{
-            let erreur = document.getElementById("messageErreur");
-            erreur.innerHTML = "Le formulaire n’est pas correctement rempli";
-        }
-    });
     
     //Parents//
     modale.appendChild(aside);
@@ -440,10 +440,8 @@ function valider(){
     categorie = document.getElementById("nameCategorie");
     validAjout = document.getElementById("validerImage");
     if((file != "") && (title.value != "") && (categorie.value != "")){ //Afficher le bouton en vert si tout est correctement rempli
-        //validAjout.disabled = false;
         validAjout.style.backgroundColor = "rgba(29, 97, 84, 1)";
     } else {
-        //validAjout.disabled = true;
         validAjout.style.backgroundColor = "rgba(167, 167, 167, 1)";
     }
 };
